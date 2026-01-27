@@ -17,7 +17,7 @@ A comprehensive template for academic papers and presentations at Hochschule der
 Click "Use this template" on GitHub or clone this repository:
 
 ```bash
-git clone https://github.com/yourusername/academic-project-template.git my-project
+git clone https://github.com/julian-schn/academic-project-template.git my-project
 cd my-project
 ```
 
