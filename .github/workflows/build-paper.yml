@@ -1,0 +1,86 @@
+name: Build Typst Paper
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'paper/**'
+      - 'config.yml'
+      - '.github/workflows/build-paper.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  check-config:
+    runs-on: ubuntu-latest
+    outputs:
+      paper_enabled: ${{ steps.check.outputs.enabled }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check if paper is enabled
+        id: check
+        run: |
+          if [ -f config.yml ]; then
+            ENABLED=$(grep -A 2 'features:' config.yml | grep 'paper:' | awk '{print $2}')
+            echo "enabled=$ENABLED" >> $GITHUB_OUTPUT
+          else
+            echo "enabled=true" >> $GITHUB_OUTPUT
+          fi
+
+  build:
+    needs: check-config
+    if: needs.check-config.outputs.paper_enabled == 'true'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build Typst document
+        uses: lvignoli/typst-action@main
+        with:
+          source_file: paper/paper.typ
+
+      - name: Get current date
+        id: date
+        run: echo "DATE=$(date +%Y-%m-%d-%H%M)" >> $GITHUB_ENV
+
+      - name: Copy PDF to root with timestamp
+        run: |
+          cp paper/paper.pdf paper-${{ env.DATE }}.pdf
+
+      - name: Commit PDF to repository
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add paper-${{ env.DATE }}.pdf
+          git commit -m "chore: build paper PDF ${{ env.DATE }}" || echo "No changes to commit"
+          git push
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: paper-${{ env.DATE }}
+          path: paper-${{ env.DATE }}.pdf
+
+      - name: Delete old releases
+        if: github.ref_type == 'tag'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release list --limit 100 | awk '{print $1}' | while read tag; do
+            echo "Deleting release: $tag"
+            gh release delete "$tag" --yes || true
+          done
+
+      - name: Release PDF on tag
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+          name: "${{ github.ref_name }} — ${{ env.DATE }}"
+          files: paper-${{ env.DATE }}.pdf

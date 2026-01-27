@@ -1,0 +1,28 @@
+# General
+.DS_Store
+*.log
+
+# Editor directories and files
+.idea
+.vscode
+*.swp
+*.swo
+
+# Node.js / Slidev (presentation)
+node_modules/
+dist/
+.output/
+.slidev/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Typst (paper)
+# Ignore generated PDFs in subdirectories (build artifacts)
+# But allow PDFs in the root (final outputs with timestamps)
+paper/*.pdf
+presentation/*.pdf
+
+# Paper drafts (Word)
+*.docx

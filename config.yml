@@ -1,0 +1,6 @@
+# Project Configuration
+# Enable/disable workflows by setting to true/false
+
+features:
+  paper: true           # Enable paper workflow (builds Typst PDF)
+  presentation: true    # Enable presentation workflow (deploys Slidev to GitHub Pages)

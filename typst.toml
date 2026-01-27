@@ -1,0 +1,9 @@
+[package]
+name = "hdm-academic-template"
+version = "1.0.0"
+description = "Academic paper and presentation template for Hochschule der Medien Stuttgart"
+authors = ["Julian Schniepp"]
+license = "MIT"
+entrypoint = "paper/lib.typ"
+
+[dependencies]
