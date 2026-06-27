@@ -52,3 +52,13 @@ npm run export     # export to PDF -> dist/slides.pdf (needs Chrome/Chromium)
 
 - Both workflows trigger only on `main` and only when their own subtree (or `config.yml` / the workflow file) changes; editing the paper does not rebuild slides and vice versa.
 - A new release deletes all previous releases by design (single "latest PDF" model), so tag pushes are destructive to release history.
+
+## Academic integrity
+
+This is a template for academic work produced *with* AI assistance, so AI help must stay disclosable and reviewable. See [`ACADEMIC_INTEGRITY.md`](ACADEMIC_INTEGRITY.md) for the full guidance. When assisting on actual paper/presentation content (as opposed to template plumbing):
+
+- Keep the author as the accountable party; AI output is an unverified draft, not a finished claim.
+- Record substantive AI contributions so they can flow into the paper's AI-usage declaration (`ai-usage` / `ai-tools` in `paper/paper.typ`) and the presentation's "Acknowledgements & AI Use" slide.
+- Never fabricate facts or citations; every reference must be real and verified against its source. Read and test any code before relying on it.
+- The paper template renders these disclosures via the `ai-usage`, `ai-tools`, `declaration`, and `declaration-place` parameters in `paper/lib.typ` (sections appear after the bibliography).
+- Do not invent specific HdM/Prüfungsordnung policy wording; point users to their official examination regulations for binding rules.

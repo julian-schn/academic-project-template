@@ -9,6 +9,7 @@ A comprehensive template for academic papers and presentations at Hochschule der
 - **GitHub Actions**: Automated building and deployment
 - **Toggleable Workflows**: Enable/disable paper or presentation workflows via config
 - **Professional Styling**: Pre-configured HdM paper formatting
+- **Responsible AI Use**: Built-in AI-usage declaration, authorship declaration, and integrity guidelines
 
 ## Quick Start
 
@@ -159,8 +160,19 @@ npm run export   # export to PDF -> dist/slides.pdf (requires Chrome/Chromium)
   abstract: none,         // Abstract content
   acknowledgments: none,  // Acknowledgments
   bibliography-file: none, // BibTeX file
+
+  // Responsible AI use (see ACADEMIC_INTEGRITY.md)
+  ai-usage: none,         // Free-text statement of how AI was used
+  ai-tools: (),           // Array of (tool: "", purpose: "", verification: "")
+  declaration: false,     // Render the formal Declaration of Authorship
+  declaration-place: "",  // Place for the signature line
 )
 ```
+
+The `ai-usage` / `ai-tools` parameters render a **Declaration on the Use of AI
+Tools** (prose + a tool/purpose/verification table), and `declaration: true`
+renders a formal **Declaration of Authorship** with a signature line. Both
+appear after the bibliography and are omitted when left at their defaults.
 
 ### Presentation Theme
 
@@ -226,6 +238,21 @@ paper/
 ```
 
 Update workflow paths accordingly.
+
+## Academic Integrity & AI Use
+
+This template is designed for academic work produced *with* AI assistance while
+staying academically responsible. AI is an assistant — you remain the author and
+are accountable for everything you submit.
+
+- The paper supports an **AI-usage declaration** and a formal **Declaration of
+  Authorship** (see the parameters above).
+- The presentation includes an **Acknowledgements & AI Use** slide.
+- Read **[ACADEMIC_INTEGRITY.md](ACADEMIC_INTEGRITY.md)** for what to disclose,
+  how to verify AI output, and the acceptable-use guidance.
+
+> These materials are guidance, not policy. Binding rules come from your course
+> and the official HdM examination regulations.
 
 ## License
 

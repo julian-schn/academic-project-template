@@ -54,6 +54,22 @@ Two columns of content:
 
 ---
 
+# Acknowledgements & AI Use
+
+AI-based tools were used to assist this work; all output was reviewed and
+verified by the author, who remains responsible for the content.
+
+| Tool             | Used for                  |
+| ---------------- | ------------------------- |
+| Claude / ChatGPT | Phrasing, code scaffolding |
+| Grammar checker  | Grammar and spelling      |
+
+<!--
+Replace with the tools you actually used. See ACADEMIC_INTEGRITY.md.
+-->
+
+---
+
 <!-- _class: lead -->
 <!-- _paginate: false -->
 

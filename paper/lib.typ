@@ -27,6 +27,14 @@
   // Acknowledgments
   acknowledgments: none,
 
+  // AI-usage declaration
+  ai-usage: none,           // Free-text statement of how AI was used
+  ai-tools: (),             // Array of (tool: "", purpose: "", verification: "")
+
+  // Declaration of Authorship (Selbstständigkeitserklärung)
+  declaration: false,       // Set true to render the formal affidavit
+  declaration-place: "",    // Place for the signature line (date reuses `date`)
+
   // Bibliography file
   bibliography-file: none,
 
@@ -161,5 +169,61 @@
   if bibliography-file != none {
     pagebreak()
     bibliography(bibliography-file, title: "References", style: "ieee")
+  }
+
+  // === DECLARATION ON THE USE OF AI TOOLS ===
+  if ai-usage != none or ai-tools.len() > 0 {
+    pagebreak()
+    heading(level: 1, numbering: none)[Declaration on the Use of AI Tools]
+
+    if ai-usage != none {
+      par(first-line-indent: 0pt)[#ai-usage]
+      v(0.5em)
+    }
+
+    if ai-tools.len() > 0 {
+      table(
+        columns: (auto, 1fr, 1fr),
+        align: (left + top, left + top, left + top),
+        inset: 8pt,
+        table.header(
+          [*Tool*], [*Purpose*], [*Verification*],
+        ),
+        ..ai-tools
+          .map(entry => ([#entry.tool], [#entry.purpose], [#entry.verification]))
+          .flatten()
+      )
+    }
+  }
+
+  // === DECLARATION OF AUTHORSHIP ===
+  if declaration {
+    pagebreak()
+    heading(level: 1, numbering: none)[Declaration of Authorship]
+
+    par(first-line-indent: 0pt)[
+      I hereby declare that I have written the present paper independently and
+      without the use of any sources or aids other than those indicated. All
+      passages taken verbatim or in substance from published or unpublished
+      works of others are marked as such. Aids used in preparing this paper,
+      including AI-based tools, are disclosed in the _Declaration on the Use of
+      AI Tools_. This paper has not previously been submitted in the same or a
+      similar form to any other examination authority and has not been published.
+    ]
+
+    v(3cm)
+
+    grid(
+      columns: (1fr, 1fr),
+      align: (left, left),
+      [
+        #line(length: 80%) \
+        #if declaration-place != "" [#declaration-place, ]#date.display("[day]. [month repr:short] [year]")
+      ],
+      [
+        #line(length: 80%) \
+        #author
+      ],
+    )
   }
 }
