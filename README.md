@@ -256,7 +256,17 @@ are accountable for everything you submit.
 
 ## License
 
-MIT License - feel free to use and modify for your academic projects.
+This repository is dual-licensed to separate the reusable template from your
+academic writing:
+
+- **Template code & build setup** (Typst template, Marp config, workflows) —
+  [MIT License](LICENSE). Reuse freely for your own projects.
+- **Creative/written content** (the `paper/` and `presentation/` text, figures,
+  and slides) — [CC BY 4.0](LICENSE-CONTENT). Others may share and adapt it with
+  attribution.
+
+When you build your own paper from this template, keep the MIT `LICENSE` for the
+template code and update the copyright holder in `LICENSE-CONTENT` to yourself.
 
 ## Credits
 
