@@ -1,14 +1,15 @@
 # Academic Project Template
 
-A comprehensive template for academic papers and presentations at Hochschule der Medien Stuttgart. Includes automated workflows for building Typst papers and deploying Slidev presentations to GitHub Pages.
+A comprehensive template for academic papers and presentations at Hochschule der Medien Stuttgart. Includes automated workflows for building Typst papers and deploying Marp presentations to GitHub Pages.
 
 ## Features
 
 - **Typst Paper Template**: HdM-styled academic paper with customizable parameters
-- **Slidev Presentation**: Modern glass-themed presentation template
+- **Marp Presentation**: Markdown-based slide deck using a built-in Marp theme
 - **GitHub Actions**: Automated building and deployment
 - **Toggleable Workflows**: Enable/disable paper or presentation workflows via config
-- **Professional Styling**: Pre-configured HdM formatting and glassmorphism theme
+- **Professional Styling**: Pre-configured HdM paper formatting
+- **Responsible AI Use**: Built-in AI-usage declaration, authorship declaration, and integrity guidelines
 
 ## Quick Start
 
@@ -57,17 +58,32 @@ Add references to `paper/references.bib`.
 
 ### 4. Presentation Setup
 
-Edit `presentation/slides.md`:
+Edit `presentation/slides.md`. Slides are plain Markdown separated by `---`:
 
 ```markdown
 ---
+marp: true
+theme: gaia
+class: invert
+paginate: true
 title: Your Presentation Title
 ---
+
+<!-- _class: lead -->
 
 # Your Title
 
 Content here...
+
+---
+
+# Next Slide
+
+- Point 1
+- Point 2
 ```
+
+Swap `theme:` for any built-in Marp theme (`default`, `gaia`, `uncover`) and remove `class: invert` for a light look.
 
 ### 5. Local Development
 
@@ -81,7 +97,9 @@ typst watch paper/paper.typ
 ```bash
 cd presentation
 npm install
-npm run dev
+npm run dev      # live preview server with watch
+npm run build    # build static HTML -> dist/index.html
+npm run export   # export to PDF -> dist/slides.pdf (requires Chrome/Chromium)
 ```
 
 ## GitHub Actions
@@ -107,9 +125,9 @@ npm run dev
 - Manual trigger via workflow_dispatch
 
 **What it does:**
-1. Builds Slidev presentation
+1. Builds the Marp presentation to a single self-contained HTML file
 2. Deploys to GitHub Pages
-3. Accessible at `https://username.github.io/repo-name/slides/`
+3. Accessible at `https://username.github.io/repo-name/`
 
 **Disable:** Set `features.presentation: false` in `config.yml`
 
@@ -142,19 +160,32 @@ npm run dev
   abstract: none,         // Abstract content
   acknowledgments: none,  // Acknowledgments
   bibliography-file: none, // BibTeX file
+
+  // Responsible AI use (see ACADEMIC_INTEGRITY.md)
+  ai-usage: none,         // Free-text statement of how AI was used
+  ai-tools: (),           // Array of (tool: "", purpose: "", verification: "")
+  declaration: false,     // Render the formal Declaration of Authorship
+  declaration-place: "",  // Place for the signature line
 )
 ```
 
+The `ai-usage` / `ai-tools` parameters render a **Declaration on the Use of AI
+Tools** (prose + a tool/purpose/verification table), and `declaration: true`
+renders a formal **Declaration of Authorship** with a signature line. Both
+appear after the bibliography and are omitted when left at their defaults.
+
 ### Presentation Theme
 
-The presentation uses a custom "Liquid Glass Dark Theme" with glassmorphism effects.
+The presentation uses a built-in Marp theme, set via the `theme:` key in the
+`slides.md` front-matter. Available built-in themes: `default`, `gaia`, `uncover`.
+The template defaults to `gaia` with `class: invert` for a dark look.
 
-**Available classes:**
-- `.glass-card`: Glassmorphic card with hover effects
-- `.glass-panel`: Larger glassmorphic panel
-- `.subtitle`: Subtitle styling
+**Useful per-slide directives** (written as HTML comments):
+- `<!-- _class: lead -->`: large, centered title slide
+- `<!-- _paginate: false -->`: hide the page number on a slide
+- `<!-- _backgroundColor: #123 -->`: override the background for one slide
 
-**Modify theme:** Edit `presentation/style.css`
+**Marp CLI settings** (e.g. enabling raw HTML) live in `presentation/marp.config.js`.
 
 ## Project Structure
 
@@ -170,8 +201,8 @@ academic-project-template/
 │   └── references.bib            # Bibliography
 ├── presentation/
 │   ├── slides.md                 # Presentation content
-│   ├── style.css                 # Glass theme styles
-│   └── package.json              # Slidev dependencies
+│   ├── marp.config.js            # Marp CLI settings
+│   └── package.json              # Marp dependencies
 ├── config.yml                    # Toggle workflows
 ├── .gitignore
 ├── typst.toml                    # Typst package metadata
@@ -208,19 +239,36 @@ paper/
 
 Update workflow paths accordingly.
 
-### Presentation Modes
+## Academic Integrity & AI Use
 
-Slidev supports multiple views:
-- **Slides:** `/slides/`
-- **Presenter:** `/slides/presenter`
-- **Overview:** `/slides/overview`
+This template is designed for academic work produced *with* AI assistance while
+staying academically responsible. AI is an assistant — you remain the author and
+are accountable for everything you submit.
+
+- The paper supports an **AI-usage declaration** and a formal **Declaration of
+  Authorship** (see the parameters above).
+- The presentation includes an **Acknowledgements & AI Use** slide.
+- Read **[ACADEMIC_INTEGRITY.md](ACADEMIC_INTEGRITY.md)** for what to disclose,
+  how to verify AI output, and the acceptable-use guidance.
+
+> These materials are guidance, not policy. Binding rules come from your course
+> and the official HdM examination regulations.
 
 ## License
 
-MIT License - feel free to use and modify for your academic projects.
+This repository is dual-licensed to separate the reusable template from your
+academic writing:
+
+- **Template code & build setup** (Typst template, Marp config, workflows) —
+  [MIT License](LICENSE). Reuse freely for your own projects.
+- **Creative/written content** (the `paper/` and `presentation/` text, figures,
+  and slides) — [CC BY 4.0](LICENSE-CONTENT). Others may share and adapt it with
+  attribution.
+
+When you build your own paper from this template, keep the MIT `LICENSE` for the
+template code and update the copyright holder in `LICENSE-CONTENT` to yourself.
 
 ## Credits
 
 - Template styling based on HdM academic standards
-- Glass theme inspired by modern UI design trends
-- Built with [Typst](https://typst.app/) and [Slidev](https://sli.dev/)
+- Built with [Typst](https://typst.app/) and [Marp](https://marp.app/)

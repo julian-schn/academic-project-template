@@ -3,4 +3,4 @@
 
 features:
   paper: true           # Enable paper workflow (builds Typst PDF)
-  presentation: true    # Enable presentation workflow (deploys Slidev to GitHub Pages)
+  presentation: true    # Enable presentation workflow (deploys Marp to GitHub Pages)

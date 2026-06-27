@@ -1,80 +1,78 @@
 ---
+marp: true
+theme: gaia
+class: invert
+paginate: true
 title: Your Presentation Title
-colorSchema: dark
-highlighter: shiki
-transition: slide-left
-mdc: true
-layout: cover
-class: text-center
 ---
+
+<!-- _class: lead -->
+<!-- _paginate: false -->
 
 # Your Presentation Title
 
 Your Name
 
-<div class="subtitle">
 Course Name
-</div>
 
 <!--
-Speaker notes for the cover slide
+Speaker notes for the cover slide.
+Lines inside HTML comments become presenter notes in Marp.
 -->
 
----
-layout: default
 ---
 
 # Introduction
 
 Your introduction content here.
 
-<v-click>
-
 - Point 1
 - Point 2
 - Point 3
 
-</v-click>
-
 <!--
-Speaker notes for introduction
+Speaker notes for introduction.
 -->
 
 ---
-layout: center
----
+
+<!-- _class: lead -->
 
 # Section Title
 
-<div class="glass-panel p-6">
-  Content in a glass panel
-</div>
+A centered section divider slide.
 
----
-layout: default
 ---
 
 # Another Slide
 
-<div class="grid grid-cols-2 gap-6 mt-6">
-  <div v-click class="glass-card">
-    <h3>Card Title 1</h3>
-    <p class="text-sm opacity-80">Card content</p>
-  </div>
+Two columns of content:
 
-  <div v-click class="glass-card">
-    <h3>Card Title 2</h3>
-    <p class="text-sm opacity-80">Card content</p>
-  </div>
-</div>
+| Topic A      | Topic B      |
+| ------------ | ------------ |
+| Card content | Card content |
 
 ---
-layout: center
-class: text-center
+
+# Acknowledgements & AI Use
+
+AI-based tools were used to assist this work; all output was reviewed and
+verified by the author, who remains responsible for the content.
+
+| Tool             | Used for                  |
+| ---------------- | ------------------------- |
+| Claude / ChatGPT | Phrasing, code scaffolding |
+| Grammar checker  | Grammar and spelling      |
+
+<!--
+Replace with the tools you actually used. See ACADEMIC_INTEGRITY.md.
+-->
+
 ---
+
+<!-- _class: lead -->
+<!-- _paginate: false -->
 
 # Questions?
 
-<div class="mt-8 opacity-80">
 Thank you for your attention
-</div>

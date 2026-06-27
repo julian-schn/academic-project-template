@@ -1,13 +1,13 @@
 {
-    "name": "slidev-presentation",
+    "name": "marp-presentation",
     "private": true,
+    "type": "module",
     "scripts": {
-        "dev": "slidev --open",
-        "build": "slidev build",
-        "export": "slidev export"
+        "dev": "marp --server --watch . --html",
+        "build": "marp slides.md --html -o dist/index.html",
+        "export": "marp slides.md --html --pdf -o dist/slides.pdf"
     },
     "dependencies": {
-        "@slidev/cli": "^0.49.10",
-        "@slidev/theme-default": "*"
+        "@marp-team/marp-cli": "^4.1.2"
     }
 }

@@ -16,8 +16,34 @@
   ],
 
   acknowledgments: [
-    Optional acknowledgments section. Mention any AI tools, helpers, or resources used.
+    Optional acknowledgments section. Thank people, institutions, or resources
+    that supported your work.
   ],
+
+  // Overall statement of how AI was used (see ACADEMIC_INTEGRITY.md).
+  ai-usage: [
+    AI-based tools were used to assist with the work described below. All
+    AI-generated suggestions were reviewed, verified, and edited by the author,
+    who takes full responsibility for the final content.
+  ],
+
+  // Per-tool disclosure: what each tool was used for and how output was verified.
+  ai-tools: (
+    (
+      tool: "Claude (Anthropic)",
+      purpose: "Rephrasing drafts and scaffolding example code.",
+      verification: "Text rewritten in own words; all code read and tested.",
+    ),
+    (
+      tool: "Grammar/spell checker",
+      purpose: "Grammar and spelling corrections.",
+      verification: "Each suggestion reviewed individually before accepting.",
+    ),
+  ),
+
+  // Formal Declaration of Authorship (Selbstständigkeitserklärung).
+  declaration: true,
+  declaration-place: "Stuttgart",
 
   bibliography-file: "references.bib",
 )
