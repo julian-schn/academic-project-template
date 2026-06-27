@@ -132,8 +132,10 @@ npm run export   # export to PDF -> dist/slides.pdf (requires Chrome/Chromium)
 **Disable:** Set `features.presentation: false` in `config.yml`
 
 **Setup GitHub Pages:**
-1. Go to repo Settings → Pages
-2. Set Source to "GitHub Actions"
+
+The deploy workflow enables Pages automatically on its first run
+(`enablement: true`). If your org restricts that, enable it manually instead:
+go to repo Settings → Pages and set Source to "GitHub Actions".
 
 ## Template Customization
 
