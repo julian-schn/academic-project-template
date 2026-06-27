@@ -41,7 +41,8 @@ npm run export     # export to PDF -> dist/slides.pdf (needs Chrome/Chromium)
 
 ### Presentation
 - `presentation/slides.md` is the Marp deck: Markdown with a `marp: true` front-matter block, slides separated by `---`, and a built-in theme set via `theme:` (template defaults to `gaia` + `class: invert`). Per-slide settings and presenter notes are HTML comments (`<!-- _class: lead -->`, `<!-- ... -->`).
-- `presentation/marp.config.js` holds Marp CLI settings shared by all scripts (currently `html: true`). `package.json` has `"type": "module"` so this config is ESM.
+- `presentation/marp.config.js` holds Marp CLI settings shared by all scripts (`html: true`, and `themeSet: './themes'` to register custom themes). `package.json` has `"type": "module"` so this config is ESM.
+- `presentation/themes/nocturne.css` is the custom default theme (`theme: nocturne`) — a dark design with a blue accent (`/* @theme nocturne */`, extends `@import 'default'`). It sets `color-scheme: dark` so the imported default theme's `light-dark()` variables (tables, code) resolve to dark; lead slides use `<!-- _class: lead -->`. Fonts (Cabinet Grotesk / Satoshi) come from Fontshare at view time — attribution/licenses in `presentation/themes/FONTS.md`.
 - Note: Marp Core has no Slidev-style step/click reveals, no presenter/overview routes, and no UnoCSS/Tailwind utility classes — slides are static Markdown styled by the theme.
 
 ### CI/CD (`.github/workflows/`)

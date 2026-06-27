@@ -1,8 +1,8 @@
 ---
 marp: true
-theme: gaia
-class: invert
+theme: nocturne
 paginate: true
+footer: '27 June 2026'   # static date — edit to your presentation date
 title: Your Presentation Title
 ---
 
@@ -11,7 +11,7 @@ title: Your Presentation Title
 
 # Your Presentation Title
 
-Your Name
+**Your Name**
 
 Course Name
 
@@ -44,13 +44,26 @@ A centered section divider slide.
 
 ---
 
-# Another Slide
+# A Key Point
 
-Two columns of content:
+> Design is not just what it looks like and feels like.
+> Design is how it works.
 
-| Topic A      | Topic B      |
-| ------------ | ------------ |
-| Card content | Card content |
+Use blockquotes for emphasis or citations.
+
+---
+
+# Code & Data
+
+```python
+def greet(name: str) -> str:
+    return f"Hello, {name}!"
+```
+
+| Metric   | Value |
+| -------- | ----- |
+| Accuracy | 0.94  |
+| F1 score | 0.91  |
 
 ---
 
