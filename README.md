@@ -178,16 +178,30 @@ appear after the bibliography and are omitted when left at their defaults.
 
 ### Presentation Theme
 
-The presentation uses a built-in Marp theme, set via the `theme:` key in the
-`slides.md` front-matter. Available built-in themes: `default`, `gaia`, `uncover`.
-The template defaults to `gaia` with `class: invert` for a dark look.
+The template ships a **custom `nocturne` theme** (`presentation/themes/nocturne.css`)
+— a "modern but serious" dark design: deep charcoal canvas with a blue accent,
+Cabinet Grotesk headings, and Satoshi body text. It's the default (`theme: nocturne`
+in the `slides.md` front-matter) and is registered with Marp via the `themeSet`
+option in `presentation/marp.config.js`.
+
+To use a stock theme instead, change `theme:` to a built-in (`default`, `gaia`,
+`uncover`). To customize the look, edit `presentation/themes/nocturne.css` (palette
+variables, including `--accent`, live in `:root`).
+
+**Fonts:** loaded from Fontshare at view time — see
+[`presentation/themes/FONTS.md`](presentation/themes/FONTS.md) for attribution,
+licenses, and the offline/PDF note.
+
+**Footer date:** set via the `footer:` front-matter directive in `slides.md`. It's
+static (Marp doesn't auto-insert the date), shown bottom-left, and hidden on
+cover/divider slides.
 
 **Useful per-slide directives** (written as HTML comments):
-- `<!-- _class: lead -->`: large, centered title slide
+- `<!-- _class: lead -->`: large, centered title slide with the top accent bar
 - `<!-- _paginate: false -->`: hide the page number on a slide
 - `<!-- _backgroundColor: #123 -->`: override the background for one slide
 
-**Marp CLI settings** (e.g. enabling raw HTML) live in `presentation/marp.config.js`.
+**Marp CLI settings** (raw HTML, theme set) live in `presentation/marp.config.js`.
 
 ## Project Structure
 
@@ -203,6 +217,9 @@ academic-project-template/
 │   └── references.bib            # Bibliography
 ├── presentation/
 │   ├── slides.md                 # Presentation content
+│   ├── themes/
+│   │   ├── nocturne.css          # Custom "nocturne" Marp theme
+│   │   └── FONTS.md              # Font attribution & licenses
 │   ├── marp.config.js            # Marp CLI settings
 │   └── package.json              # Marp dependencies
 ├── config.yml                    # Toggle workflows

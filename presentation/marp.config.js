@@ -4,4 +4,6 @@
 export default {
   // Allow raw HTML in slides (needed for any custom markup you add later).
   html: true,
+  // Register the custom theme(s) in ./themes (e.g. the "hdm" theme).
+  themeSet: './themes',
 };

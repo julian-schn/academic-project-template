@@ -1,0 +1,189 @@
+/* @theme nocturne */
+
+/*
+ * Nocturne — Dark Contemporary
+ * A modern-but-serious Marp theme: deep charcoal canvas with a blue accent.
+ * Fonts: Cabinet Grotesk (headings) + Satoshi (body) via Fontshare.
+ * Font licenses & attribution: see themes/FONTS.md
+ */
+
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@500&f[]=cabinet-grotesk@800&display=swap');
+@import 'default';
+
+:root {
+  /* accent */
+  --accent: #5386E4;        /* blue, vivid on dark */
+  --accent-deep: #3a6fd0;   /* deeper blue for bars / fills */
+
+  /* surfaces & ink */
+  --bg-top: #16191b;
+  --bg-bottom: #0e1112;
+  --fg: #f4f7f7;
+  --muted: #9fb0b0;
+  --panel: #1e2224;
+  --border: #2f3437;
+
+  /* Resolve the imported default theme's light-dark() variables to their dark
+     variants (otherwise tables/code render on white). */
+  color-scheme: dark;
+}
+
+/* === Slide canvas === */
+section {
+  padding: 70px 80px;
+  background: linear-gradient(160deg, var(--bg-top) 0%, var(--bg-bottom) 100%);
+  color: var(--fg);
+  font-family: 'Satoshi', system-ui, -apple-system, sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
+}
+
+/* === Headings === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cabinet Grotesk', 'Satoshi', sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: 52px; margin: 0 0 0.55em; }
+h2 { font-size: 38px; margin: 0 0 0.4em; }
+h3 { font-size: 30px; color: var(--muted); }
+
+/* short accent rule under the main title */
+h1::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 4px;
+  margin-top: 18px;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+/* === Body elements === */
+a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(83, 134, 228, 0.4);
+}
+strong { color: var(--accent); font-weight: 700; }
+
+ul, ol { margin: 0.4em 0; }
+li { margin: 0.35em 0; }
+ul > li::marker,
+ol > li::marker { color: var(--accent); }
+
+blockquote {
+  border-left: 4px solid var(--accent);
+  margin: 0.6em 0;
+  padding: 0.2em 0 0.2em 1em;
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* === Code === */
+code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.08em 0.4em;
+  font-size: 0.85em;
+  color: #b9ccf2;
+}
+pre {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1em 1.2em;
+}
+pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--fg);
+}
+
+/* Syntax highlighting tuned for the dark canvas (overrides default theme) */
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal { color: #e06c9f; }
+.hljs-string,
+.hljs-attr,
+.hljs-meta-string { color: #9ece6a; }
+.hljs-title,
+.hljs-section,
+.hljs-name { color: #7aa2f7; }
+.hljs-built_in,
+.hljs-type,
+.hljs-class .hljs-title { color: #2ac3de; }
+.hljs-number,
+.hljs-symbol { color: #ff9e64; }
+.hljs-comment,
+.hljs-quote { color: #6a727d; font-style: italic; }
+
+/* === Tables === */
+table {
+  border-collapse: collapse;
+  margin: 0.4em 0;
+  font-size: 0.92em;
+  background: transparent;
+}
+/* override the imported default theme's row backgrounds (specificity match) */
+section table tr,
+section table tr:nth-child(2n) {
+  background: transparent;
+  border-top: none;
+}
+th, td {
+  padding: 0.5em 1em;
+  text-align: left;
+  color: var(--fg);
+  border-bottom: 1px solid var(--border);
+}
+thead th {
+  color: #ffffff;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 800;
+  border-bottom: 2px solid var(--accent);
+}
+
+/* === Chrome: pagination, header, footer === */
+section::after {
+  color: var(--muted);
+  font-family: 'Satoshi', sans-serif;
+  font-size: 16px;
+  right: 44px;
+  bottom: 30px;
+}
+header, footer {
+  color: var(--muted);
+  font-family: 'Satoshi', sans-serif;
+  font-size: 16px;
+}
+
+/* === Lead slides (cover / section dividers / closing) === */
+section.lead {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  /* thin accent bar across the top of lead slides */
+  border-top: 6px solid var(--accent);
+}
+section.lead h1 {
+  font-size: 76px;
+  margin-bottom: 0.3em;
+}
+section.lead h1::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+section.lead p { color: var(--muted); font-size: 28px; margin: 0.2em 0; }
+section.lead strong { color: var(--fg); }
+/* no footer/date on cover & divider slides */
+section.lead footer { display: none; }
